@@ -112,25 +112,25 @@ const Home: React.FC<Props> = ({ products }) => {
                   </h2>
                   <AccordionPanel sx={{ dislay: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     {/* Aquí puedes agregar los talles */}
-                    <Button size="xs" mr={2} mb={1} backgroundColor="blue.700" color="white" onClick={() => { handleTalleSelection(product, 'S'); swal("Producto agregado al carrito", "Sigue viendo los productos", "success") }}>
+                    <Button size="sm" mr={2} mb={1} backgroundColor="blue.700" color="white" onClick={() => { handleTalleSelection(product, 'S'); swal("Producto agregado al carrito", "Sigue viendo los productos", "success") }}>
                       S
                     </Button>
-                    <Button size="xs" mr={2} mb={1} backgroundColor="blue.700" color="white" onClick={() => { handleTalleSelection(product, 'M'); swal("Producto agregado al carrito", "Sigue viendo los productos", "success") }}>
+                    <Button size="sm" mr={2} mb={1} backgroundColor="blue.700" color="white" onClick={() => { handleTalleSelection(product, 'M'); swal("Producto agregado al carrito", "Sigue viendo los productos", "success") }}>
                       M
                     </Button>
-                    <Button size="xs" mr={2} mb={1} backgroundColor="blue.700" color="white" onClick={() => { handleTalleSelection(product, 'L'); swal("Producto agregado al carrito", "Sigue viendo los productos", "success") }}>
+                    <Button size="sm" mr={2} mb={1} backgroundColor="blue.700" color="white" onClick={() => { handleTalleSelection(product, 'L'); swal("Producto agregado al carrito", "Sigue viendo los productos", "success") }}>
                       L
                     </Button>
-                    <Button size="xs" mr={2} mb={1} backgroundColor="blue.700" color="white" onClick={() => { handleTalleSelection(product, '2XL'); swal("Producto agregado al carrito", "Sigue viendo los productos", "success") }}>
+                    <Button size="sm" mr={2} mb={1} backgroundColor="blue.700" color="white" onClick={() => { handleTalleSelection(product, '2XL'); swal("Producto agregado al carrito", "Sigue viendo los productos", "success") }}>
                       2XL
                     </Button>
-                    <Button size="xs" mr={2} mb={1} backgroundColor="blue.700" color="white" onClick={() => { handleTalleSelection(product, '3XL'); swal("Producto agregado al carrito", "Sigue viendo los productos", "success") }}>
+                    <Button size="sm" mr={2} mb={1} backgroundColor="blue.700" color="white" onClick={() => { handleTalleSelection(product, '3XL'); swal("Producto agregado al carrito", "Sigue viendo los productos", "success") }}>
                       3XL
                     </Button>
-                    <Button size="xs" mr={2} mb={1} backgroundColor="blue.700" color="white" onClick={() => { handleTalleSelection(product, '4XL'); swal("Producto agregado al carrito", "Sigue viendo los productos", "success") }}>
+                    <Button size="sm" mr={2} mb={1} backgroundColor="blue.700" color="white" onClick={() => { handleTalleSelection(product, '4XL'); swal("Producto agregado al carrito", "Sigue viendo los productos", "success") }}>
                       4XL
                     </Button>
-                    <Button size="xs" mr={2} mb={1} backgroundColor="blue.700" color="white" onClick={() => { handleTalleSelection(product, '5XL'); swal("Producto agregado al carrito", "Sigue viendo los productos", "success") }}>
+                    <Button size="sm" mr={2} mb={1} backgroundColor="blue.700" color="white" onClick={() => { handleTalleSelection(product, '5XL'); swal("Producto agregado al carrito", "Sigue viendo los productos", "success") }}>
                       5XL
                     </Button>
                   </AccordionPanel>
