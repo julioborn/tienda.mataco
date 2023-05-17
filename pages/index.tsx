@@ -3,6 +3,7 @@ import { Button, Grid, Stack, Text, Link, Flex, Image, Accordion, AccordionItem,
 import api from 'tienda.mataco/product/api';
 import { Product } from 'tienda.mataco/product/types';
 import { GetStaticProps } from 'next';
+import swal from 'sweetalert';
 
 interface Props {
   products: Product[];
@@ -77,33 +78,33 @@ const Home: React.FC<Props> = ({ products }) => {
                   </h2>
                   <AccordionPanel>
                     {/* Aquí puedes agregar los talles */}
-                    <Button size="sm" mr={2} onClick={() => handleTalleSelection(product, 'S')}>
+                    <Button size="sm" mr={2} onClick={() => {handleTalleSelection(product, 'S'); swal("Producto agregado al carrito", "Sigue viendo los productos", "success")}}>
                       S
                     </Button>
-                    <Button size="sm" mr={2} onClick={() => handleTalleSelection(product, 'M')}>
+                    <Button size="sm" mr={2} onClick={() => {handleTalleSelection(product, 'M'); swal("Producto agregado al carrito", "Sigue viendo los productos", "success")}}>
                       M
                     </Button>
-                    <Button size="sm" mr={2} onClick={() => handleTalleSelection(product, 'L')}>
+                    <Button size="sm" mr={2} onClick={() => {handleTalleSelection(product, 'L'); swal("Producto agregado al carrito", "Sigue viendo los productos", "success")}}>
                       L
                     </Button>
-                    <Button size="sm" mr={2} onClick={() => handleTalleSelection(product, '2XL')}>
+                    <Button size="sm" mr={2} onClick={() => {handleTalleSelection(product, '2XL'); swal("Producto agregado al carrito", "Sigue viendo los productos", "success")}}>
                       2XL
                     </Button>
-                    <Button size="sm" mr={2} onClick={() => handleTalleSelection(product, '3XL')}>
+                    <Button size="sm" mr={2} onClick={() => {handleTalleSelection(product, '3XL'); swal("Producto agregado al carrito", "Sigue viendo los productos", "success")}}>
                       3XL
                     </Button>
-                    <Button size="sm" mr={2} onClick={() => handleTalleSelection(product, '4XL')}>
+                    <Button size="sm" mr={2} onClick={() => {handleTalleSelection(product, '4XL'); swal("Producto agregado al carrito", "Sigue viendo los productos", "success")}}>
                       4XL
                     </Button>
-                    <Button size="sm" mr={2} onClick={() => handleTalleSelection(product, '5XL')}>
+                    <Button size="sm" mr={2} onClick={() => {handleTalleSelection(product, '5XL'); swal("Producto agregado al carrito", "Sigue viendo los productos", "success")}}>
                       5XL
                     </Button>
                   </AccordionPanel>
                 </AccordionItem>
               </Accordion>
             ) : (
-              <Button colorScheme="primary" onClick={() => setCart((cart) => cart.concat(product))}>
-                Agregar al pedido
+              <Button colorScheme="primary" onClick={() => {setCart((cart) => cart.concat(product)); swal("Producto agregado al carrito", "Sigue viendo los productos", "success")}}>
+                Agregar
               </Button>
             )}
           </Stack>
