@@ -61,7 +61,7 @@ const Home: React.FC<Props> = ({ products }) => {
     <Stack spacing={6}>
       {/* Botón para abrir la guía de talles */}
       <Flex justifyContent="center">
-        <Button backgroundColor="blue.700" color="white" onClick={openSizeGuide}>Guía de talles</Button>
+        <Button backgroundColor="blue.700" color="white" onClick={openSizeGuide}>Guía de Talles</Button>
       </Flex>
 
       {/* Modal de la guía de talles */}
