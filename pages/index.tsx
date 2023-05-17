@@ -61,12 +61,12 @@ const Home: React.FC<Props> = ({ products }) => {
           </ModalBody>
         </ModalContent>
       </Modal>
-      <Grid gridGap={6} templateColumns="repeat(auto-fill, minmax(240px, 1fr))">
+      <Grid gridGap={6} templateColumns="repeat(auto-fill, minmax(130px, 1fr))">
         {products.map((product) => (
           <Stack borderRadius="md" padding={4} backgroundColor="gray.100" key={product.id}>
             <Image maxHeight={'auto'} objectFit="cover" src={product.imagen} />
-            <Text>{product.producto}</Text>
-            <Text fontWeight="500">$ {product.precio}</Text>
+            <Text sx={{display:"flex", justifyContent:"center", fontWeight:"bold"}}>{product.producto}</Text>
+            <Text>$ {product.precio}</Text>
             {isIndumentaria(product) ? (
               <Accordion borderColor="blue.700" allowToggle>
                 <AccordionItem>
