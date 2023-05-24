@@ -30,13 +30,30 @@ interface Props {
 
 const Home: React.FC<Props> = ({ products }) => {
   const [cart, setCart] = React.useState<Product[]>([]);
-  const text = React.useMemo(
-    () =>
-      cart
-        .reduce((message, product) => message.concat(`* ${product.producto} ${product.talle ? '- Talle: ' + product.talle : ''}: $${product.precio}\n`), ``)
-        .concat(`- Total: $${cart.reduce((total, product) => total + product.precio, 0)}`),
-    [cart]
-  );
+  const [ancho, setAncho] = useState('');
+  const [largo, setLargo] = useState('');
+  const [circunferencia, setCircunferencia] = useState('');
+
+  const text = React.useMemo(() => {
+    let message = cart.reduce(
+      (message, product) =>
+        message.concat(
+          `* ${product.producto} ${product.talle ? '- Talle: ' + product.talle : ''}: $${product.precio}\n`
+        ),
+      ''
+    );
+    const total = cart.reduce((total, product) => total + product.precio, 0);
+    if (message.includes('Short')) {
+      const shorts = cart.filter((product) => product.categoria === 'Short');
+      shorts.forEach(() => {
+        const medidas = `(Ancho: ${ancho} cm, Largo: ${largo} cm, Circunferencia: ${circunferencia} cm)`;
+        message = message.concat(`${medidas}\n`);
+      });
+    }
+    message = message.concat(`- Total: $${total}`);
+    return message;
+  }, [cart]);
+
   const isIndumentaria = (product: Product) => product.categoria === 'Indumentaria';
   const handleTalleSelection = (product: Product, talle: string) => {
     const updatedProduct = { ...product, talle };
@@ -101,6 +118,29 @@ const Home: React.FC<Props> = ({ products }) => {
             />
             <Text sx={{ display: 'flex', justifyContent: 'center', fontWeight: 'bold' }}>{product.producto}</Text>
             <Text>$ {product.precio}</Text>
+
+            {product.categoria === 'Short' && (
+              <>
+                <input
+                  type="text"
+                  placeholder="Ancho en cm"
+                  value={ancho}
+                  onChange={(e) => setAncho(e.target.value)}
+                />
+                <input
+                  type="text"
+                  placeholder="Largo en cm"
+                  value={largo}
+                  onChange={(e) => setLargo(e.target.value)}
+                />
+                <input
+                  type="text"
+                  placeholder="Circunf. en cm"
+                  value={circunferencia}
+                  onChange={(e) => setCircunferencia(e.target.value)}
+                />
+              </>
+            )}
             {isIndumentaria(product) ? (
               <Accordion allowToggle>
                 <AccordionItem>
@@ -112,32 +152,32 @@ const Home: React.FC<Props> = ({ products }) => {
                   </h2>
                   <AccordionPanel sx={{ dislay: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     {/* Aquí puedes agregar los talles */}
-                    <Button size="sm" mr={2} mb={1} backgroundColor="blue.700" color="white" onClick={() => { handleTalleSelection(product, 'S'); swal("Producto agregado al carrito", "Sigue viendo los productos", "success") }}>
+                    <Button size="sm" mr={2} mb={1} backgroundColor="blue.700" color="white" onClick={() => { handleTalleSelection(product, 'S'); swal("Producto agregado", "Sigue viendo más productos", "success") }}>
                       S
                     </Button>
-                    <Button size="sm" mr={2} mb={1} backgroundColor="blue.700" color="white" onClick={() => { handleTalleSelection(product, 'M'); swal("Producto agregado al carrito", "Sigue viendo los productos", "success") }}>
+                    <Button size="sm" mr={2} mb={1} backgroundColor="blue.700" color="white" onClick={() => { handleTalleSelection(product, 'M'); swal("Producto agregado", "Sigue viendo más productos", "success") }}>
                       M
                     </Button>
-                    <Button size="sm" mr={2} mb={1} backgroundColor="blue.700" color="white" onClick={() => { handleTalleSelection(product, 'L'); swal("Producto agregado al carrito", "Sigue viendo los productos", "success") }}>
+                    <Button size="sm" mr={2} mb={1} backgroundColor="blue.700" color="white" onClick={() => { handleTalleSelection(product, 'L'); swal("Producto agregado", "Sigue viendo más productos", "success") }}>
                       L
                     </Button>
-                    <Button size="sm" mr={2} mb={1} backgroundColor="blue.700" color="white" onClick={() => { handleTalleSelection(product, '2XL'); swal("Producto agregado al carrito", "Sigue viendo los productos", "success") }}>
+                    <Button size="sm" mr={2} mb={1} backgroundColor="blue.700" color="white" onClick={() => { handleTalleSelection(product, '2XL'); swal("Producto agregado", "Sigue viendo más productos", "success") }}>
                       2XL
                     </Button>
-                    <Button size="sm" mr={2} mb={1} backgroundColor="blue.700" color="white" onClick={() => { handleTalleSelection(product, '3XL'); swal("Producto agregado al carrito", "Sigue viendo los productos", "success") }}>
+                    <Button size="sm" mr={2} mb={1} backgroundColor="blue.700" color="white" onClick={() => { handleTalleSelection(product, '3XL'); swal("Producto agregado", "Sigue viendo más productos", "success") }}>
                       3XL
                     </Button>
-                    <Button size="sm" mr={2} mb={1} backgroundColor="blue.700" color="white" onClick={() => { handleTalleSelection(product, '4XL'); swal("Producto agregado al carrito", "Sigue viendo los productos", "success") }}>
+                    <Button size="sm" mr={2} mb={1} backgroundColor="blue.700" color="white" onClick={() => { handleTalleSelection(product, '4XL'); swal("Producto agregado", "Sigue viendo más productos", "success") }}>
                       4XL
                     </Button>
-                    <Button size="sm" mr={2} mb={1} backgroundColor="blue.700" color="white" onClick={() => { handleTalleSelection(product, '5XL'); swal("Producto agregado al carrito", "Sigue viendo los productos", "success") }}>
+                    <Button size="sm" mr={2} mb={1} backgroundColor="blue.700" color="white" onClick={() => { handleTalleSelection(product, '5XL'); swal("Producto agregado", "Sigue viendo más productos", "success") }}>
                       5XL
                     </Button>
                   </AccordionPanel>
                 </AccordionItem>
               </Accordion>
             ) : (
-              <Button colorScheme="primary" backgroundColor="blue.700" color="white" onClick={() => { setCart((cart) => cart.concat(product)); swal("Producto agregado al carrito", "Sigue viendo los productos", "success") }}>
+              <Button colorScheme="primary" backgroundColor="blue.700" color="white" onClick={() => { setCart((cart) => cart.concat(product)); swal("Producto agregado", "Sigue viendo más productos", "success") }}>
                 Agregar
               </Button>
             )}
@@ -150,7 +190,7 @@ const Home: React.FC<Props> = ({ products }) => {
           <ModalHeader></ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Image src={expandedImage} borderRadius="md" mb="9"/>
+            <Image src={expandedImage} borderRadius="md" mb="9" />
           </ModalBody>
         </ModalContent>
       </Modal>
@@ -163,7 +203,7 @@ const Home: React.FC<Props> = ({ products }) => {
             isExternal
             href={`https://wa.me/3483434068?text=${encodeURIComponent(text)}`}
           >
-            Completar pedido ({cart.length} productos)
+            Completar pedido ({cart.length} producto/s)
           </Button>
         </Flex>
       )}
